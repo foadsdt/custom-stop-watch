@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { TestContext } from './TestContext';
+import TimeList from './TimeList';
+import Timer from './Timer';
 
-function App() {
+const App = () => {
+
+  const [timeArray, setTimeArray] = useState([])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TestContext.Provider value={{
+      timeArray,
+      setTimeArray
+    }}>
+      <div className="App">
+        <div className="row">
+          <div className='col-12 d-flex justify-content-center p-3'>
+            <div>
+              <Timer />
+            </div>
+            <div>
+              <TimeList />
+            </div>
+          </div>
+        </div>
+      </div>
+    </TestContext.Provider>
   );
 }
 
